@@ -23,17 +23,26 @@ function userLogin() {
 
 function pageLoadUserInfo() {
     if (checkConnection()) {
-        let UserIDInt = document.cookie.split(";")[0].split("=")[1];
-        $.post("PhpExercise.php",{
-            UserIDInt : UserIDInt,
-            FunctionToExecuteStr : "GetUserData"
-        },function(data) {
-            data = JSON.parse(data);
-            $("#txtFirstName").val(data["FirstName"]);
-            $("#txtLastName").val(data["LastName"]);
-            $("#txtEmailAddress").val(data["EmailAddress"]);
-            $("#txtUsername").val(data["Username"]);
-        });
+        if (checkCookies()) {
+            let UserIDInt = document.cookie.split(";")[0].split("=")[1];
+                $.post("PhpExercise.php",{
+                    UserIDInt : UserIDInt,
+                    FunctionToExecuteStr : "GetUserData"
+                },function(data) {
+                    data = JSON.parse(data);
+                    $("#txtFirstName").val(data["FirstName"]);
+                    $("#txtLastName").val(data["LastName"]);
+                    $("#txtEmailAddress").val(data["EmailAddress"]);
+                    $("#txtUsername").val(data["Username"]);
+                });
+        } else {
+            alert("User is not logged in.");
+            $.post("PhpExercise.php",{
+                PageRedirectLocation : "Login"
+            },function(data) {
+                window.location.href = "PhpExercise.html";
+            });
+        }
     }
 }
 
