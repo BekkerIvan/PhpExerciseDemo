@@ -7,22 +7,19 @@ function userLogin() {
                     FunctionToExecuteStr : "Login"
                 }, function(data) {
                     data = JSON.parse(data);
-                    if(data["LoginSuccessful"]) {
+                    if (data["LoginSuccessful"]) {
                         window.location.href = data["PageRedirect"];
                     } else {
                         alert("Username not found or password mismatch.");
-                        
                     }
-                })
+            });
             } else {
                 alert("Field(s) cannot be empty.");
             }
-    }else {
+    } else {
         alert("Connection Error.");
     }
-
 }
-
 
 function pageLoadUserInfo() {
     if (checkConnection()) {
@@ -36,14 +33,11 @@ function pageLoadUserInfo() {
             $("#txtLastName").val(data["LastName"]);
             $("#txtEmailAddress").val(data["EmailAddress"]);
             $("#txtUsername").val(data["Username"]);
-        })
+        });
     }
-
 }
 
-
 function GetUsername() {
-
     if (checkConnection()) {
         if (checkCookies()) {
             $CookieData = document.cookie.split(";");
@@ -56,10 +50,8 @@ function GetUsername() {
                 window.location.href = "PhpExercise.html";
             });
         }
-
     }
 }
-
 
 function getAllPosts() {
     if (checkConnection()) {
@@ -67,7 +59,7 @@ function getAllPosts() {
             FunctionToExecuteStr : "GetPostsAll"
         }, function(data) {
             data = JSON.parse(data);
-            if (data["UserID"].length > 1) {
+            if (data["UserID"].length > 0) {
                 let DivCounter = 0;
                 data["UserID"].forEach(userID => {
                     let divPosts = document.createElement("div");
@@ -86,12 +78,13 @@ function getAllPosts() {
                     divUsernameAndDatePosted.className ="aTimeStamp";
                     document.getElementById("Posts").appendChild(divPosts);
                     document.getElementById("divPost" + DivCounter).appendChild(divUsernameAndDatePosted);
-
                     DivCounter++;
                 });
             } else {
+                alert(data["Status"]);
             }
-        }); } else {
+        }); 
+    } else {
         alert("Connection Error.");
     }
 }
@@ -126,18 +119,23 @@ function searchPost() {
                                     document.getElementById("Posts").appendChild(divPosts);
                                     document.getElementById("divPost" + DivCounter).appendChild(divUsernameAndDatePosted);
                                     DivCounter++;
-                            });}} else {
-                                alert(data["Message"]);
-                                location.reload();
-                        }});} else {
-                                alert(data["Message"]);
-            }});} else {
+                            });}
+                        } else {
+                            alert(data["Message"]);
+                            location.reload();
+                        }
+                    });
+                } else {
+                    alert(data["Message"]);
+                }
+            });
+        } else {
                 location.reload();
-    }} else {
+        }
+    } else {
         alert("Connection Error.");
     }
 }
-
 
 function openPostWindow() {
     if (checkConnection()) {
@@ -193,7 +191,6 @@ function updateUserInfo() {
     }
 }
 
-
 function addNewPost() {
     if(checkConnection()) {
         let CheckInputsBool = checkInputs($("#txtUserPost").val());
@@ -220,12 +217,9 @@ function addNewPost() {
     }
 }
 
-
 function clearErrorLabel() {
     $("#lblErrorLable").html("");
 }
-
-
 
 function closePostWindow() {
     window.onclick = function(event) {
@@ -234,7 +228,6 @@ function closePostWindow() {
         }
     }
 }
-
 
 
 function cancelOpp() {
@@ -260,9 +253,6 @@ function userLogout() {
     }
 
 }
-
-
-
 
 /*  VALIDATION FUNCTIONS    */
 

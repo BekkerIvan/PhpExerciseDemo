@@ -14,6 +14,8 @@ class PhpExercisePostsReworked extends PhpExerciseReworked  {
                     $ReturnArr["PostTimeStamp"][] = $SelectedRow["PostTimeStamp"];
                     $ReturnArr["PostText"][] = $SelectedRow["PostText"];
                 }
+            } else {
+                $ReturnArr["Status"] = "No posts was found.";
             }
             $this->closeDatabaseConnection();
             echo json_encode($ReturnArr);
