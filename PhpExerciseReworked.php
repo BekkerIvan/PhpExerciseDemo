@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 class PhpExerciseReworked {
 
@@ -54,7 +54,7 @@ class PhpExerciseReworked {
     public function getDatePosted() {
         return $this->DatePosted;
     }
-    
+
   
     public function userLogin() {
         $ReturnArr = array();
@@ -65,8 +65,8 @@ class PhpExerciseReworked {
             if ($QueryResult->num_rows == 1) {
                 while ($SelectedRow = $QueryResult->fetch_assoc()) {
                     $UserPasswordFetch = $SelectedRow["Password"];
-                    setcookie("UserID", $SelectedRow["ID"]);
-                    setcookie("Username", $SelectedRow["Username"]);
+                    $_SESSION["UserID"] = $SelectedRow["ID"];
+                    $_SESSION["Username"] = $SelectedRow["Username"];
                 } if (md5($UserPasswordFetch) == md5($this->getPassword())) {
                     $ReturnArr["LoginSuccessful"] = true;
                     $ReturnArr["PageRedirect"] = "PhpExerciseHomePageReworked.html";

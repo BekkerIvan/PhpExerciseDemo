@@ -6,7 +6,9 @@ function userLogin() {
                     PasswordStr : $("#txtPassword").val(),
                     FunctionToExecuteStr : "Login"
                 }, function(data) {
+                    alert(data);
                     data = JSON.parse(data);
+                    
                     if (data["LoginSuccessful"]) {
                         window.location.href = data["PageRedirect"];
                     } else {
@@ -24,7 +26,7 @@ function userLogin() {
 function pageLoadUserInfo() {
     if (checkConnection()) {
         if (checkCookies()) {
-            let UserIDInt = document.cookie.split(";")[0].split("=")[1];
+            let UserIDInt = sessionStorage.getItem("Username");
                 $.post("PhpExercise.php",{
                     UserIDInt : UserIDInt,
                     FunctionToExecuteStr : "GetUserData"
@@ -49,18 +51,11 @@ function pageLoadUserInfo() {
 
 function GetUsername() {
     if (checkConnection()) {
-        if (checkCookies()) {
-            $CookieData = document.cookie.split(";");
-            $("#UserInfoSettings").html($CookieData[1].split("=")[1]);
-        } else {
-            window.stop();
-            alert("User is not logged in.");
-            $.post("PhpExercise.php",{
-                PageRedirectLocation : "Login"
-            },function(data) {
-                window.location.href = "PhpExercise.html";
-            });
-        }
+        $.post("PhpExercise.php",{
+            FunctionToExecuteStr : "GetUsername"
+        }, function(data) {
+            
+        })
     }
 }
 

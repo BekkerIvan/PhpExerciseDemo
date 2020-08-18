@@ -57,7 +57,8 @@ class PhpExercisePostsReworked extends PhpExerciseReworked  {
                 $this->closeDatabaseConnection();
                 echo json_encode($ReturnArr);
             } catch (\Throwable $th) {
-                //throw $th;
+                throw $th;
+
             }
         }
     }
