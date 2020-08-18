@@ -54,9 +54,8 @@ class PhpExerciseReworked {
     public function getDatePosted() {
         return $this->DatePosted;
     }
-
     
-
+  
     public function userLogin() {
         $ReturnArr = array();
         $UserPasswordFetch = "";
@@ -85,21 +84,6 @@ class PhpExerciseReworked {
             $ReturnArr["ConnectionStatus"] = "Connection to database failed.";
         }
         echo json_encode($ReturnArr);
-    }
-
-    public function addPost() {
-        if ($this->openDatabaseConnection()) {
-            try {
-                $this->SQLCommandStr = "INSERT INTO posts (UserID, PostTimeStamp, PostText) VALUES ('" . $this->getUserID() . "', '" . $this->getDatePosted() . "' , '" . $this->getUserPost() . "')";
-                $this->conn->query($this->SQLCommandStr);
-                $ReturnArr["SuccessStr"] = "Your post is now live.";
-                $ReturnArr["PageRefresh"] = true;
-                $this->closeDatabaseConnection();
-                echo json_encode($ReturnArr);
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-        }
     }
 
     public function Username() {
@@ -223,6 +207,7 @@ class PhpExerciseReworked {
     }
 
         /* Open and close database functions  */
+
     public function openDatabaseConnection() {
         try {
             $ServerName = "localhost";

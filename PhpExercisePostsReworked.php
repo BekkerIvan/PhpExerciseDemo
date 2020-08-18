@@ -2,8 +2,7 @@
 include "PhpExerciseReworked.php";
 class PhpExercisePostsReworked extends PhpExerciseReworked  {
 
-    public function getAllPosts()
-    {
+    public function getAllPosts() {
        if ($this->openDatabaseConnection()) {
            try {
             $this->SQLCommandStr = "SELECT UserID, PostTimeStamp, PostText FROM posts ORDER BY PostTimeStamp DESC";
@@ -48,4 +47,18 @@ class PhpExercisePostsReworked extends PhpExerciseReworked  {
         }
     }
 
+    public function addPost() {
+        if ($this->openDatabaseConnection()) {
+            try {
+                $this->SQLCommandStr = "INSERT INTO posts (UserID, PostTimeStamp, PostText) VALUES ('" . $this->getUserID() . "', '" . $this->getDatePosted() . "' , '" . $this->getUserPost() . "')";
+                $this->conn->query($this->SQLCommandStr);
+                $ReturnArr["SuccessStr"] = "Your post is now live.";
+                $ReturnArr["PageRefresh"] = true;
+                $this->closeDatabaseConnection();
+                echo json_encode($ReturnArr);
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+        }
+    }
 }?>
