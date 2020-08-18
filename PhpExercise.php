@@ -85,7 +85,6 @@
             break;
     }
 
-
     function pageRedirectLocation($PageRedirectLocation) {
         switch ($PageRedirectLocation) {
             case 'HomePage':
