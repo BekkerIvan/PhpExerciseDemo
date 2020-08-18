@@ -166,7 +166,6 @@ function updateUserInfo() {
                             UserIDInt : document.cookie.split(";")[0].split("=")[1],
                             FunctionToExecuteStr : "UpdateUser"  
                         },function(data) {        
-                            alert(data);
                             data = JSON.parse(data);
                             if (data["PasswordMatch"]) {
                                 alert(data["Status"]);

@@ -118,7 +118,6 @@ public function Username() {
             $this->closeDatabaseConnection();
             echo json_encode($ReturnArr);
         } catch (\Throwable $th) {
-            //throw $th;
         }
 
     }
@@ -142,7 +141,6 @@ public function getUserIDPost() {
             $this->closeDatabaseConnection();
             echo json_encode($ReturnArr);
         } catch (\Throwable $th) {
-            //throw $th;
         }
     }
 }
@@ -186,11 +184,11 @@ public function updateUserInfo() {
                             $ChangesBool = true;
                         }
                         if ($SelectedRow["LastName"] != $this->getLastName()) {
-                            $this->SQLCommandStr .= " LastName = '" + $this->getLastName() . "',";
+                            $this->SQLCommandStr .= " LastName = '" . $this->getLastName() . "',";
                             $ChangesBool = true;
                         }
                         if ($SelectedRow["EmailAddress"] != $this->getEmailAddress()) {
-                            $this->SQLCommandStr .= " EmailAddres = '" . $this->getEmailAddress() . "',";
+                            $this->SQLCommandStr .= " EmailAddress = '" . $this->getEmailAddress() . "',";
                             $ChangesBool = true;
                         }
                         if ($SelectedRow["Username"] != $this->getUsername()) {
@@ -220,7 +218,6 @@ public function updateUserInfo() {
             $this->closeDatabaseConnection();
             echo json_encode($ReturnArr);
         } catch (\Throwable $th) {
-            //throw $th;
         }
     }
 }
