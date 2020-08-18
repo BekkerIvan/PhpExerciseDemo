@@ -37,7 +37,7 @@ class PhpExercisePostsReworked extends PhpExerciseReworked  {
                     }
                 } else {
                     $ReturnArr["Status"] = false;
-                    $ReturnArr["Message"] = "No data was found.";
+                    $ReturnArr["Message"] = "User has not posted anything yet.";
                 }
                 $this->closeDatabaseConnection();
                 echo json_encode($ReturnArr);

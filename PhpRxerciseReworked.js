@@ -15,8 +15,10 @@ function userLogin() {
                     }
                 })
             } else {
-                alert("Connection Error.");
+                alert("Field(s) cannot be empty.");
             }
+    }else {
+        alert("Connection Error.");
     }
 
 }
@@ -124,10 +126,9 @@ function searchPost() {
                                     document.getElementById("Posts").appendChild(divPosts);
                                     document.getElementById("divPost" + DivCounter).appendChild(divUsernameAndDatePosted);
                                     DivCounter++;
-                            });} else {
-                                alert($("#txtSearch").val() + " has not posted anything as of yet.");
-                        }} else {
+                            });}} else {
                                 alert(data["Message"]);
+                                location.reload();
                         }});} else {
                                 alert(data["Message"]);
             }});} else {
