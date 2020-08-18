@@ -36,6 +36,7 @@ function pageLoadUserInfo() {
                     $("#txtUsername").val(data["Username"]);
                 });
         } else {
+            window.stop();
             alert("User is not logged in.");
             $.post("PhpExercise.php",{
                 PageRedirectLocation : "Login"
@@ -52,6 +53,7 @@ function GetUsername() {
             $CookieData = document.cookie.split(";");
             $("#UserInfoSettings").html($CookieData[1].split("=")[1]);
         } else {
+            window.stop();
             alert("User is not logged in.");
             $.post("PhpExercise.php",{
                 PageRedirectLocation : "Login"
