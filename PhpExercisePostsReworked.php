@@ -25,7 +25,6 @@ class PhpExercisePostsReworked extends PhpExerciseReworked  {
        }
     }
 
-
     public function getPost() {
         if ($this->openDatabaseConnection()) {
             try {
@@ -48,6 +47,5 @@ class PhpExercisePostsReworked extends PhpExerciseReworked  {
             
         }
     }
-
 
 }?>
