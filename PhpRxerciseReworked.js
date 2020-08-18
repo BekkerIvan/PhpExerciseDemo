@@ -41,7 +41,7 @@ function pageLoadUserInfo() {
             $.post("PhpExercise.php",{
                 PageRedirectLocation : "Login"
             },function(data) {
-                window.location.href = "PhpExercise.html";
+                window.location.href = JSON.parse(data);
             });
         }
     }
@@ -249,6 +249,17 @@ function cancelOpp() {
     });
 }
 
+function updateUserInfoPage() {
+    if (checkConnection()) {
+        $.post("PhpExercise.php",{
+            PageRedirectLocation : "Update"
+        },function(data) {
+            window.location.href = JSON.parse(data);
+        });
+    } else {
+        alert('Connection Error.');                         
+    }
+}
 
 function userLogout() {
     if (checkConnection()) {
